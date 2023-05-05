@@ -40,5 +40,14 @@ export class pageJsonController{
       message: 'Success.',
     };
   }
+
+  @Get('findAllPage')
+  async findAllPage(): Promise<PageJsonResponse<PageInfo[]>> {
+    return {
+      code: 200,
+      data: await this.PageService.findAllPage(),
+      message: 'Success.',
+    };
+  }
 }
 

@@ -27,4 +27,8 @@
     return await this.userModel.findOne({"pageId":pageInfo.pageId})
   }
 
+  async findAllPage(): Promise<PageJson []>{
+    return await this.userModel.find()
+  }
+
  }
