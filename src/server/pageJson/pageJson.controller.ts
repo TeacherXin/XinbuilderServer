@@ -49,5 +49,23 @@ export class pageJsonController{
       message: 'Success.',
     };
   }
+
+  @Post('updatePage')
+  async updatePage(@Body() pageJson: CreatePage): Promise<PageJsonResponse> {
+    await this.PageService.updatePage(pageJson);
+    return {
+      code: 200,
+      message: 'Success.',
+    };
+  }
+
+  @Post('deletePage')
+  async deletePage(@Body() pageJson: CreatePage): Promise<PageJsonResponse> {
+    await this.PageService.deletePage(pageJson);
+    return {
+      code: 200,
+      message: 'Success.',
+    };
+  }
 }
 

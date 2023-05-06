@@ -31,4 +31,12 @@
     return await this.userModel.find()
   }
 
+  async updatePage(body: CreatePage): Promise<void>{
+    await this.userModel.updateOne({pageId: body.pageId},{pageJson: body.pageJson})
+  }
+
+  async deletePage(pageInfo: PageInfo): Promise<void>{
+    await this.userModel.deleteOne({"pageId":pageInfo.pageId})
+  }
+
  }
