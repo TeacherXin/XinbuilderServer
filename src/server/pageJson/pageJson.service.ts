@@ -7,7 +7,7 @@
  // 为了在 user.service 中操作数据库
  import { InjectModel } from '@nestjs/mongoose';
  import { Model } from 'mongoose';
- import { CreatePage, EditPage, PageInfo } from './pageJson.dto';
+ import { CreatePage, EditPage, PageInfo, UserInfo } from './pageJson.dto';
  import { PageJson } from './pageJson.interface';
 
  @Injectable()
@@ -27,8 +27,11 @@
     return await this.userModel.findOne({"pageId":pageInfo.pageId})
   }
 
-  async findAllPage(): Promise<PageJson []>{
-    return await this.userModel.find()
+  async findAllPage(userInfo: UserInfo): Promise<PageJson []>{
+    if(!userInfo.username){
+      return null
+    }
+    return await this.userModel.find({username: userInfo.username})
   }
 
   async updatePage(body: CreatePage): Promise<void>{

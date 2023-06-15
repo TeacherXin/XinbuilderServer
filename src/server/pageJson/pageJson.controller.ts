@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 
-import { CreatePage, EditPage,PageInfo } from './pageJson.dto';
+import { CreatePage,PageInfo, UserInfo } from './pageJson.dto';
 import { PageJson } from './pageJson.interface';
 import { PageService } from './pageJson.service'
 
@@ -41,11 +41,11 @@ export class pageJsonController{
     };
   }
 
-  @Get('findAllPage')
-  async findAllPage(): Promise<PageJsonResponse<PageInfo[]>> {
+  @Post('findAllPage')
+  async findAllPage(@Body() userInfo:UserInfo): Promise<PageJsonResponse<PageInfo[]>> {
     return {
       code: 200,
-      data: await this.PageService.findAllPage(),
+      data: await this.PageService.findAllPage(userInfo),
       message: 'Success.',
     };
   }
