@@ -42,4 +42,13 @@ export class EntityController {
       message: 'Sucess'
     }
   }
+
+  @Post('delEntityItem')
+  async delEntityItem(@Body() EntityInfo: EntityInfo){
+    return {
+      code: 200,
+      data: await this.EntityService.delEntityItem(EntityInfo),
+      message: 'Sucess'
+    }
+  }
 }
