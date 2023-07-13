@@ -13,6 +13,7 @@ export class EntityService {
   constructor(@InjectModel('Entity') private readonly EntityModule:Model<Entity>){}
 
   async addEntity(body: createEntity): Promise<void> {
+    const DBRootModule = mongoose.createConnection('mongodb://127.0.0.1/localData');
     await this.EntityModule.create(body)
     DBRootModule.model(body.entityCode,new Schema(body.entitySchema),body.entityCode);
   }
@@ -23,12 +24,16 @@ export class EntityService {
   }
 
   async addEntityItem(body: EntityInfo): Promise<void> {
-    const Model = DBRootModule.model(body.entityCode);
+    const DBRootModule = mongoose.createConnection('mongodb://127.0.0.1/localData');
+    const entity = await this.EntityModule.findOne({entityCode: body.entityCode});
+    const Model = DBRootModule.model(body.entityCode,new Schema(entity.entitySchema),body.entityCode);
     await Model.create({...body.entityParam})
   }
 
   async getEntityItem(body: EntityInfo): Promise<Object []> {
-    const Model = DBRootModule.model(body.entityCode);
+    const DBRootModule = mongoose.createConnection('mongodb://127.0.0.1/localData');
+    const entity = await this.EntityModule.findOne({entityCode: body.entityCode});
+    const Model = DBRootModule.model(body.entityCode,new Schema(entity.entitySchema),body.entityCode);
     return Model.find()
   }
 
