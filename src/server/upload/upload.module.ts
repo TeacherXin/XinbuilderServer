@@ -6,13 +6,14 @@ import { UploadController } from './upload.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { join, extname } from 'path';
+const path = require('path')
 
 @Module({
   //里面有register 和 registerAsync 两个方法，前者是同步的，后者是异步的
   imports: [MulterModule.register({
     //图片上传完要存放的位置
     storage: diskStorage({
-      destination: join('C:\\Myself\\React-cli\\XinbuilderServer\\public', 'images'),//存放的文件路径
+      destination: join(path.resolve(__dirname, '../../../') + '/public', 'images'),//存放的文件路径
       filename: (req, file, callback) => {
         //重新定义文件名，file.originalname 文件的原始名称
         // extname 获取文件后缀
