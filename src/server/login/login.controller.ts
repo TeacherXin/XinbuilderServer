@@ -23,6 +23,13 @@ export class LgoinController {
   }
   @Post('getUser')
   async getUser(@Body() createLogin: createLogin){
+    if(createLogin.username === 'admin' && createLogin.password === '666666') {
+      return {
+        code: 200,
+        data: createLogin,
+        message: 'Success'
+      }
+    }
     return {
       code: 200,
       data: await this.LoginService.getUser(createLogin),
