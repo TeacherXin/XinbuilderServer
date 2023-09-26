@@ -11,6 +11,6 @@ async function bootstrap() {
     prefix:"/dist"
   })
   app.setViewEngine('ejs');
-  await app.listen(3003);
+  await app.listen(80);
 }
 bootstrap();
