@@ -29,7 +29,7 @@
 
   async findAllPage(userInfo: UserInfo): Promise<PageJson []>{
     if(!userInfo.username){
-      return null
+      return await this.userModel.find({})
     }
     return await this.userModel.find({username: userInfo.username})
   }
@@ -40,6 +40,10 @@
 
   async deletePage(pageInfo: PageInfo): Promise<void>{
     await this.userModel.deleteOne({"pageId":pageInfo.pageId})
+  }
+
+  async releasePage(pageInfo: PageInfo): Promise<void>{
+    await this.userModel.updateOne({pageId: pageInfo.pageId},{isRelease: true})
   }
 
  }

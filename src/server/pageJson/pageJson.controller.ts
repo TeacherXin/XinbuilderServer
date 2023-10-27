@@ -67,5 +67,14 @@ export class pageJsonController{
       message: 'Success.',
     };
   }
+
+  @Post('releasePage')
+  async releasePage(@Body() pageJson: CreatePage): Promise<PageJsonResponse> {
+    await this.PageService.releasePage(pageJson);
+    return {
+      code: 200,
+      message: 'Success.',
+    };
+  }
 }
 
