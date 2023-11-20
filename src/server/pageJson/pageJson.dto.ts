@@ -3,6 +3,7 @@ export class CreatePage{
   readonly pageName: string;
   readonly pageJson: Object;
   readonly username: string;
+  readonly isMobile: boolean;
 }
 
 export class EditPage{

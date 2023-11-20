@@ -5,5 +5,6 @@ export const pageJsonSchema = new Schema({
   pageName: { type: String, required: true },
   pageJson: { type: Object, required: true },
   username: { type: String, required: true},
-  isRelease: {type: Boolean, required: false}
+  isRelease: {type: Boolean, required: false},
+  isMobile: {type: Boolean, required: false}
 });
