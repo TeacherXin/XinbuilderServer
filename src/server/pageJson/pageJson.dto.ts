@@ -4,6 +4,7 @@ export class CreatePage{
   readonly pageJson: Object;
   readonly username: string;
   readonly isMobile: boolean;
+  readonly is3D: boolean;
 }
 
 export class EditPage{
