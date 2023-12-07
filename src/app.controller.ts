@@ -10,4 +10,10 @@ export class AppController {
   getIndex(): { message: string } {
     return { message: 'hello ejs!' };
   }
+
+  @Get('/renderPage')
+  @Render('render')
+  getIndex2(): { message: string } {
+    return { message: 'hello ejs!' };
+  }
 }
