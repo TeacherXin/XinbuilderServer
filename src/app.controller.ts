@@ -16,4 +16,10 @@ export class AppController {
   getIndex2(): { message: string } {
     return { message: 'hello ejs!' };
   }
+
+  @Get('/builder')
+  @Render('builder')
+  getInde32(): { message: string } {
+    return { message: 'hello ejs!' };
+  }
 }
